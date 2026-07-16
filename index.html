@@ -1,105 +1,187 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dot Letter with Heart Effect</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-
-        .letter-container {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .letter-text {
-            font-size: 2.5em;
-            color: #ff4d4d;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #ff4d4d;
-            transform: rotate(-45deg);
-            animation: float 6s infinite;
-            z-index: 0;
-        }
-
-            .heart::before,
-            .heart::after {
-                content: '';
-                width: 20px;
-                height: 20px;
-                background-color: #ff4d4d;
-                border-radius: 50%;
-                position: absolute;
-            }
-
-            .heart::before {
-                top: -10px;
-                left: 0;
-            }
-
-            .heart::after {
-                top: 0;
-                left: 10px;
-            }
-
-        @keyframes float {
-            0% {
-                opacity: 1;
-                transform: translateY(0) rotate(-45deg);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-300px) rotate(-45deg);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You ❤️</title>
+ 
+<style>
+*{
+    box-sizing:border-box;
+}
+ 
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    padding:20px;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    overflow-x:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+ 
+.container{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    width:100%;
+    max-width:700px;
+    padding:clamp(20px, 6vw, 40px);
+    border-radius:25px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+ 
+h1{
+    color:#ffffff;
+    font-size:clamp(28px, 6vw, 48px);
+    margin-bottom:15px;
+    line-height:1.2;
+}
+ 
+p{
+    color:#d1d5db;
+    font-size:clamp(15px, 3vw, 18px);
+    margin-bottom:25px;
+}
+ 
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:clamp(14px, 3vw, 18px) clamp(28px, 6vw, 45px);
+    font-size:clamp(16px, 3vw, 22px);
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+    width:100%;
+    max-width:320px;
+}
+ 
+button:hover{
+    background:#1d4ed8;
+    transform:scale(1.05);
+}
+ 
+#loveText{
+    display:none;
+    color:#ffffff;
+    font-size:clamp(18px, 4vw, 30px);
+    font-weight:bold;
+    margin:20px 0 15px;
+    line-height:1.4;
+}
+ 
+#videoBox{
+    display:none;
+    margin-top:20px;
+    width:100%;
+}
+ 
+#video{
+    width:100%;
+    max-height:70vh;
+    border-radius:15px;
+}
+ 
+.container.video-only{
+    background:transparent;
+    backdrop-filter:none;
+    border:none;
+    box-shadow:none;
+    padding:0;
+}
+ 
+@media (max-width:480px){
+    .container{
+        border-radius:18px;
+    }
+    button{
+        border-radius:30px;
+    }
+}
+ 
+/* Floating hearts */
+.heart{
+    position:fixed;
+    top:-10vh;
+    pointer-events:none;
+    animation-name:floatUp;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;
+    z-index:999;
+}
+ 
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+ 
 </head>
 <body>
-    <div class="letter-container">
-        <div class="letter-text">iloveyou</div>
+ 
+<div class="container">
+ 
+    <h1>💙 A Message For You</h1>
+ 
+    <p>I made something special just for you.</p>
+ 
+    <button onclick="showVideo()">
+        Open My Message 💙
+    </button>
+ 
+    <div id="loveText">
+        No matter how far we are, you'll always have a place in my heart. ❤️
     </div>
-    <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 300);
-    </script>
+ 
+    <div id="videoBox">
+        <video id="video" controls>
+            <source src="love.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+ 
+</div>
+ 
+<script>
+function showVideo(){
+    document.querySelector(".container").classList.add("video-only");
+    document.querySelector(".container h1").style.display = "none";
+    document.querySelector(".container p").style.display = "none";
+    document.querySelector(".container button").style.display = "none";
+    document.getElementById("loveText").style.display = "none";
+ 
+    document.getElementById("videoBox").style.display = "block";
+ 
+    let video = document.getElementById("video");
+    video.play().catch(() => {
+        // Autoplay may be blocked by the browser; user can press play manually.
+    });
+ 
+    for(let i = 0; i < 80; i++){
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 35) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+ 
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+}
+</script>
+ 
 </body>
 </html>
